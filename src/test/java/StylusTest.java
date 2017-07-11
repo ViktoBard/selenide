@@ -1,0 +1,44 @@
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
+
+import static junit.framework.TestCase.assertTrue;
+
+/**
+ * Created by Viktor on 11.07.2017.
+ */
+public class StylusTest {
+    private String stylusLink = "https://stylus.ua/";
+    private String targetUrl = "https://stylus.ua/aksessuary-dlya-planshetnyh-pk/sony-style-cover-stand-white-scr12roww-for-sony-xperia-z2-tablet.html";
+    private String searchText = "Sony Xperia Z2";
+    private WebDriver webDriver;
+
+    @Test
+    public void stylusTest() {
+        System.setProperty("webdriver.chrome.driver",
+                "C:\\Temp\\Programming\\chromedriver.exe");
+
+        webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        webDriver.get(stylusLink);
+
+        By searchLocator = By.name("q");
+        WebElement searchField = webDriver.findElement(searchLocator);
+        searchField.sendKeys(searchText);
+        searchField.submit();
+
+        By textLocator = By.xpath(".//span[contains(text(),'Sony Xperia Z2')]");
+        WebElement text = webDriver.findElement(textLocator);
+        assertTrue(text.getText().contains(searchText));
+        text.click();
+
+        Assert.assertEquals(targetUrl, webDriver.getCurrentUrl());
+        webDriver.quit();
+    }
+}
