@@ -43,25 +43,25 @@ public class GoogleSearchTest {
             assertTrue(i.getText().contains(searchText));
         }
 
-//        List<WebElement> elements = webDriver.findElements(By.ByTagName.tagName("a"));
-//
-//        assertTrue(!elements.isEmpty());
-//        System.out.println(elements.size());
+        List<WebElement> elements = webDriver.findElements(By.ByTagName.tagName("a"));
+
+        assertTrue(!elements.isEmpty());
+        System.out.println(elements.size());
 
 
-//        By textLocator = By.xpath("//*[contains(text(),'Selenium - Web Browser Automation')]");
-//        WebElement text = webDriver.findElement(textLocator);
-//        assertTrue(text.getText().contains(firstLinkString));
-//        text.click();
-//
-//        By searchField2 = By.id("q");
-//        WebElement searchField3 = webDriver.findElement(searchField2);
-//        searchField3.sendKeys(inputText);
-//        By clickGo = By.id("submit");
-//        WebElement clikGoElement = webDriver.findElement(clickGo);
-//        clikGoElement.click();
+        By textLocator = By.xpath("//*[contains(text(),'Selenium - Web Browser Automation')]");
+        WebElement text = webDriver.findElement(textLocator);
+        assertTrue(text.getText().contains(firstLinkString));
+        text.click();
 
-//webDriver.close();
+        By searchField2 = By.id("q");
+        WebElement searchField3 = webDriver.findElement(searchField2);
+        searchField3.sendKeys(inputText);
+        By clickGo = By.id("submit");
+        WebElement clikGoElement = webDriver.findElement(clickGo);
+        clikGoElement.click();
+
+webDriver.close();
         webDriver.quit();
     }
 }
