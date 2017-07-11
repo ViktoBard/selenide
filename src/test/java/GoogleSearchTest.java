@@ -36,18 +36,13 @@ public class GoogleSearchTest {
         WebElement link = webDriver.findElement(linkLocator);
         assertTrue(link.getText().contains(searchText));
 
-        List<WebElement> elements;
-        elements = webDriver.findElements(By.cssSelector(".r>a"));
+        List <WebElement> elements;
+        elements = webDriver.findElements(By.xpath("//a[contains(text(),'Selenium')]"));
         for (WebElement i : elements) {
-            System.out.println(i.isDisplayed());
+            System.out.println(i);
+            assertTrue(i.isDisplayed());
             assertTrue(i.getText().contains(searchText));
         }
-
-        List<WebElement> elements = webDriver.findElements(By.ByTagName.tagName("a"));
-
-        assertTrue(!elements.isEmpty());
-        System.out.println(elements.size());
-
 
         By textLocator = By.xpath("//*[contains(text(),'Selenium - Web Browser Automation')]");
         WebElement text = webDriver.findElement(textLocator);
@@ -61,7 +56,7 @@ public class GoogleSearchTest {
         WebElement clikGoElement = webDriver.findElement(clickGo);
         clikGoElement.click();
 
-webDriver.close();
+//        webDriver.close();
         webDriver.quit();
     }
 }
