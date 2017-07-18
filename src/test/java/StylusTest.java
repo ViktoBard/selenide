@@ -1,18 +1,27 @@
+import com.codeborne.selenide.WebDriverRunner;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import selenide.core.SelenideTestBase;
+import selenide.pages.Google.GoogleSearchPage;
+import selenide.pages.Google.GoogleSearchResultPage;
+import selenide.pages.Stylus.StylusMainPage;
+import selenide.pages.Stylus.StylusSearchResultPage;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.open;
 import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by Viktor on 11.07.2017.
  */
-public class StylusTest {
+public class StylusTest extends SelenideTestBase{
     private String stylusLink = "https://stylus.ua/";
     private String targetUrl = "https://stylus.ua/aksessuary-dlya-planshetnyh-pk/sony-style-cover-stand-white-scr12roww-for-sony-xperia-z2-tablet.html";
     private String searchText = "Sony Xperia Z2";
@@ -40,5 +49,17 @@ public class StylusTest {
 
         Assert.assertEquals(targetUrl, webDriver.getCurrentUrl());
         webDriver.quit();
+    }
+
+    @Test
+    public void stylusObjectPatternTest() {
+        open(stylusLink);
+        StylusMainPage stylusMainPage = new StylusMainPage();
+        stylusMainPage.searchFor(searchText);
+        WebDriverRunner.getWebDriver().getCurrentUrl().contains(targetUrl);
+        StylusSearchResultPage stylusResult = new StylusSearchResultPage();
+        stylusResult.getLinksResults()
+                .first()
+                .shouldHave(text("Sony Xperia Z2"));
     }
 }
