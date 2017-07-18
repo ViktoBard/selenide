@@ -3,29 +3,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import selenium.core.WebDriverTestBase;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.assertTrue;
 
-public class GoogleSearchTest {
+public class GoogleSearchTest extends WebDriverTestBase{
 
     private String googleSearch = "https://www.google.com.ua/";
     private String searchText = "Selenium";
-    private String searchText2 = " ";
-    private WebDriver webDriver;
     private String firstLinkString = "Selenium - Web Browser Automation";
     private String inputText = "text";
 
     @Test
     public void searchTest() {
-        System.setProperty("webdriver.chrome.driver",
-                "C:\\Temp\\Programming\\chromedriver.exe");
-
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         webDriver.get(googleSearch);
         By searchLocator = By.id("lst-ib");
         WebElement searchField = webDriver.findElement(searchLocator);
