@@ -1,3 +1,5 @@
+package advancedinteractions.Selenide;
+
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.Assert;
 import org.openqa.selenium.By;

@@ -1,3 +1,5 @@
+package advancedinteractions.Selenide;
+
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import selenide.core.SelenideTestBase;
