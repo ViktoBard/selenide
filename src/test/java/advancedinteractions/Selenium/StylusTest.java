@@ -1,4 +1,4 @@
-package advancedinteractions.Selenide;
+package advancedinteractions.Selenium;
 
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.Assert;
@@ -30,7 +30,7 @@ public class StylusTest extends SelenideTestBase{
     private WebDriver webDriver;
 
     @Test
-    public void stylusTest() {
+    public void stylusTestSelenium() {
         System.setProperty("webdriver.chrome.driver",
                 "C:\\Temp\\Programming\\chromedriver.exe");
 
