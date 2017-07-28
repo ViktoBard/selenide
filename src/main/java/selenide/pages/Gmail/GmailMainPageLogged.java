@@ -24,8 +24,4 @@ public class GmailMainPageLogged {
         checkLoginEmailLocator.text().contains(login);
         return this;
     }
-
-    public ElementsCollection getLinksResults() {
-        return checkMails;
-    }
 }
