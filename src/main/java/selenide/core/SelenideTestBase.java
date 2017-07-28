@@ -7,6 +7,7 @@ import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.testng.annotations.BeforeClass;
 
 import static org.openqa.selenium.remote.BrowserType.CHROME;
+import static org.openqa.selenium.remote.BrowserType.FIREFOX;
 
 public class SelenideTestBase {
 

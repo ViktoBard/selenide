@@ -11,8 +11,11 @@ import org.testng.ITestResult;
 import java.io.File;
 import java.io.IOException;
 
+import static selenide.util.PropertiesCache.getProperty;
+
 public class TestListener implements ITestListener {
     private WebDriver driver;
+    private String testScreenshot = getProperty("test.screenshot");
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
@@ -28,7 +31,7 @@ public class TestListener implements ITestListener {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(scrFile,
-                    new File("C:\\Temp\\Programming\\failed\\"
+                    new File(testScreenshot
                             + iTestResult.getMethod().getMethodName() + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
