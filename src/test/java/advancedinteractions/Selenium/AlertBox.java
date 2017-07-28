@@ -25,5 +25,6 @@ public class AlertBox extends WebDriverTestBase {
         WebElement fildResult = webDriver.findElement(By.id("demo"));
         String text = fildResult.getText();
         assertTrue(text.equals("You pressed Cancel!"));
+        webDriver.quit();
     }
 }

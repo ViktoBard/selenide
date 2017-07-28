@@ -42,5 +42,6 @@ public class DropDownsAndIFrame extends WebDriverTestBase {
         //вернутся в основной HTML
         webDriver.switchTo().defaultContent();
         assertTrue(webDriver.getTitle().equals("Frameset Example Title (Replace this section with your own title)"));
+        webDriver.quit();
     }
 }

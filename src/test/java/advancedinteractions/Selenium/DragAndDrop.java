@@ -26,5 +26,6 @@ public class DragAndDrop extends WebDriverTestBase {
         Actions builder = new Actions(webDriver);
         builder.dragAndDrop(from, to).build().perform();
         from.getAttribute("src").equals("img_logo.gif");
+        webDriver.quit();
     }
 }
