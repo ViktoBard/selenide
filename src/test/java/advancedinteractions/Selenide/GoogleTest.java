@@ -2,6 +2,9 @@ package advancedinteractions.Selenide;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.Title;
 import selenide.core.SelenideTestBase;
 import selenide.pages.Google.GoogleSearchPage;
 import selenide.pages.Google.GoogleSearchResultPage;
@@ -15,6 +18,10 @@ import static com.codeborne.selenide.Selenide.*;
 /**
  * Created by Viktor on 12.07.2017.
  */
+
+
+@Features("Google Search")
+@Stories({"Web-888"})
 public class GoogleTest extends SelenideTestBase {
     private String google = "https://www.google.com/ncr";
     private String searchText = "selenide";
@@ -38,10 +45,11 @@ public class GoogleTest extends SelenideTestBase {
         $(By.name("q")).val(searchText).pressEnter();
         $$(By.xpath("//*[@class='rc']")).shouldHave(size(10));
         $(By.xpath("//*[@class='rc']")).shouldBe(visible).shouldHave(
-                text("Selenide: concise UI tests in Java"),
+                text("Selenide"),
                 text("selenide.org"));
     }
 
+    @Title("Searches fot text on Google")
     @Test
     public void searchInGoogleWithPageObjectTest() {
         open(google);

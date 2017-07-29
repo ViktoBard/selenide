@@ -7,10 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import ru.yandex.qatools.allure.annotations.Attachment;
 
 import java.io.File;
-import java.io.IOException;
 
+import static com.google.common.io.Files.toByteArray;
 import static selenide.util.PropertiesCache.getProperty;
 
 public class TestListener implements ITestListener {
@@ -25,17 +26,38 @@ public class TestListener implements ITestListener {
     public void onTestSuccess(ITestResult iTestResult) {
     }
 
+    //    @Override
+//    public void onTestFailure(ITestResult iTestResult) {
+//        driver = ((WebDriverTestBase) iTestResult.getInstance()).webDriver;
+//        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//        try {
+//            FileUtils.copyFile(scrFile,
+//                    new File(testScreenshot
+//                            + iTestResult.getMethod().getMethodName() + ".png"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
     @Override
     public void onTestFailure(ITestResult iTestResult) {
         driver = ((WebDriverTestBase) iTestResult.getInstance()).webDriver;
-        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        saveScreenshot(iTestResult.getMethod().getMethodName());
+    }
+
+    @Attachment(value = "{0}")
+    public byte[] saveScreenshot(String screenshotName) {
         try {
-            FileUtils.copyFile(scrFile,
-                    new File(testScreenshot
-                            + iTestResult.getMethod().getMethodName() + ".png"));
-        } catch (IOException e) {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+//          для сохранения файлов локально
+//          FileUtils.copyFile(scrFile,
+//          new File(testScreenshot + screenshotName + ".png"));
+
+            return toByteArray(scrFile);
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        return new byte[0];
     }
 
     @Override

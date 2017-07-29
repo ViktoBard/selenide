@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.Title;
 import selenium.core.WebDriverTestBase;
 
 import java.util.List;
@@ -12,6 +15,9 @@ import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.assertTrue;
 
+
+@Features("Google Search")
+@Stories({"Web-777"})
 public class GoogleSearchTest extends WebDriverTestBase{
 
     private String googleSearch = "https://www.google.com.ua/";
@@ -19,6 +25,7 @@ public class GoogleSearchTest extends WebDriverTestBase{
     private String firstLinkString = "Selenium - Web Browser Automation";
     private String inputText = "text";
 
+    @Title("Searches fot text on Google")
     @Test
     public void searchTest() {
         webDriver.get(googleSearch);
