@@ -10,7 +10,7 @@ import org.testng.annotations.Listeners;
 
 import static org.openqa.selenium.remote.BrowserType.CHROME;
 import static org.openqa.selenium.remote.BrowserType.FIREFOX;
-@Listeners({selenium.core.TestListener.class})
+@Listeners({TestListener.class})
 public class SelenideTestBase {
 
     private String browser = System.getProperty("browser", CHROME);
